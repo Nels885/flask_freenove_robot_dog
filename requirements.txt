@@ -1,0 +1,8 @@
+flask
+flask-redis-constance
+flask-restful
+logger
+pytesseract
+#opencv-contrib-python
+opencv-contrib-python-headless
+gunicorn

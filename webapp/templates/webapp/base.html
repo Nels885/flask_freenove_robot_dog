@@ -1,0 +1,8 @@
+{% extends 'webapp/_layout.html' %}
+
+
+{% block navitems_custom %}
+    <li class="nav-item">
+        <a class="nav-link {% if card_title=='Stream' %}active{% endif %}" href="{{ url_for('main.stream')}}">Stream</a>
+    </li>
+{% endblock %}

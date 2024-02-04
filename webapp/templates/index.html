@@ -1,0 +1,44 @@
+{% extends 'webapp/base.html' %}
+
+{% block card_header %}
+
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs" id="detail-list" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" href="#history" role="tab" aria-controls="history" aria-selected="true">
+                    Historique
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#description" role="tab" aria-controls="description" aria-selected="false">
+                    Description
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#about" role="tab" aria-controls="description" aria-selected="false">
+                    About
+                </a>
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div class="tab-content mt-3">
+
+        <!-- History -->
+        <div class="tab-pane show active" id="history" role="tabpanel" aria-labelledby="history-tab"></div>
+
+        <!-- Description -->
+        <div class="tab-pane" id="description" role="tabpanel" aria-labelledby="description-tab"></div>
+
+        <!-- About -->
+        <div class="tab-pane" id="about" role="tabpanel" aria-labelledby="about-tab"></div>
+
+    </div>
+
+{% endblock %}

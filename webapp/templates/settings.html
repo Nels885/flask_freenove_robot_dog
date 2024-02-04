@@ -1,0 +1,63 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
+    <form method="post">
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th class="col-4">Name</th>
+                        <th class="col-4">Default</th>
+                        <th class="col-4">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in obj.items() %}
+                    <tr>
+                        <th class ="form-group">
+                            {{ key }}<br><small class="form-text text-muted">{{ value[2] }}</small>
+                        </th>
+                        <th class="font-weight-light text-wrap">{{ value[0] }}</th>
+                        <th class="form-group text-nowrap">
+                            <textarea type="text" class="form-control" id="{{ key }}" aria-describedby="{{ key }}Reset" rows="2" name="{{ key }}">{{ value[1] }}</textarea>
+                            <small id="{{ key }}Reset" class="form-text text-muted"><a href="#" data-id="{{ key }}" onclick="reset(this)">Reset to default</a></small>
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+
+{% endblock %}
+
+{% block extrascript %}
+
+    <script type="text/javascript">
+        function reset(element) {
+            var key = element.dataset.id;
+            $.ajax({
+                method: "post",
+                url: "{{ url_for('main.ajax_value_reset') }}",
+                data: JSON.stringify({"key": key}),
+                contentType: "application/json",
+                success: function(data) {
+                    console.log(data);
+                    $('#' + key).val(data['val']);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            })
+        }
+    </script>
+
+{% endblock %}
