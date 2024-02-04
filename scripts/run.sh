@@ -44,7 +44,7 @@ function aptUpgrade() {
     sudo apt install --fix-missing
     sudo apt update && sudo apt dist-upgrade -y
     echo -e "${RED}Installing needed programs...${NC}"
-    sudo apt install -y python3-pip  python3-venv python3-dev tcl tmux supervisor nginx redis-server ntpdate
+    sudo apt install -y python3-pip  python3-venv python3-dev python3-smbus tcl tmux supervisor nginx redis-server ntpdate i2c-tools
 }
 
 function aptInstall() {
