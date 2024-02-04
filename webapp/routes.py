@@ -4,6 +4,8 @@ from datetime import datetime
 from flask import render_template, jsonify, Blueprint, request, flash, Response
 from constance import config, redis_get, redis_mset
 
+from raspack.ADS7830 import adc
+
 main_bp = Blueprint("main", __name__)
 
 
@@ -23,6 +25,7 @@ def index():
 @main_bp.route('/status/')
 def status():
     card_title = "Operating state"
+    battery = f"{adc.readAdc(0)/255.0*5.0*3:.2f}V"
     return render_template('status.html', **locals())
 
 
@@ -37,7 +40,8 @@ def system():
 def status_ajax():
     now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     status = redis_get("prog_status", default="Hors ligne")
-    return jsonify({'now': now, 'status': status})
+    battery = f"{adc.readAdc(0)/255.0*5.0*3:.2f}V"
+    return jsonify(locals())
 
 
 @main_bp.route('/stop/')

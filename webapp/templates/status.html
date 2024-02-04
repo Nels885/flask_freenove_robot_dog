@@ -19,6 +19,10 @@
                 <td>{{ mode }}</td>
               </tr>
               <tr>
+                <th scope="row" class="col-6">Battery :</th>
+                <td id="battery">{{ battery }}</td>
+              </tr>
+              <tr>
                 <th scope="row" class="col-6">Program status :</th>
                 <td id="status">{{ status }}</td>
               </tr>
@@ -30,7 +34,7 @@
 {% endblock %}
 
 
-{% block extrascripts %}
+{% block extrascript %}
 
 <script>
   setInterval(function () {
@@ -42,9 +46,10 @@
                     $('#date').html(data['now']);
                     $('#status').html(data['status']);
                     $('#display').html(data['display']);
+                    $('#battery').html(data['battery']);
                 },
                 error: function(error) {
-                    console.log(error);
+                    console.log("error: " + error);
                 }
             })
 
